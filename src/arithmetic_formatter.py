@@ -1,4 +1,4 @@
-def arithmetic_arranger(problems, evaluate=False):
+def arithmetic_arranger(problems, evaluate=False) -> str:
     if not (type(problems) == list or type(problems) == tuple):
         raise TypeError("Expected list or tuple")
 
@@ -9,13 +9,12 @@ def arithmetic_arranger(problems, evaluate=False):
     second_line = ""
     third_line = ""
     fourth_line = ""
-    for problem in problems:
 
-        operation_elements = problem.split()
-        first_operand = operation_elements[0]
-        operator = operation_elements[1]
-        second_operand = operation_elements[2]
-        four_spaces = " " * 4
+    for problem in problems:
+        first_operand, operator, second_operand = parse_problem(problem)
+
+        if len(first_operand) > 4 or len(second_operand) > 4:
+            return "Error: Operands cannot be more than four digits."
 
         try:
             first_number = int(first_operand)
@@ -33,6 +32,7 @@ def arithmetic_arranger(problems, evaluate=False):
         else:
             return "Error: Operator must be '+' or '-'."
 
+        four_spaces = " " * 4
         # Adjust the spacing based on which operand is longer
         if len(first_operand) > len(second_operand):
             first_line += "  {}".format(first_operand) + four_spaces
@@ -62,6 +62,7 @@ def arithmetic_arranger(problems, evaluate=False):
             if evaluate:
                 third_line += "\n"
             fourth_line = fourth_line.rstrip()
+
     # Handle the optional argument, it defaults to False if not precised
     if evaluate:
         arranged_problems = first_line + second_line + third_line + fourth_line
@@ -69,3 +70,17 @@ def arithmetic_arranger(problems, evaluate=False):
         arranged_problems = first_line + second_line + third_line
 
     return arranged_problems
+
+
+def parse_problem(problem):
+    if type(problem) != str:
+        raise TypeError("Expected string")
+
+    elements = problem.split()
+    if len(elements) != 3:
+        raise ValueError("Expected two operands and one operator")
+
+    first_operand = elements[0]
+    operator = elements[1]
+    second_operand = elements[2]
+    return first_operand, operator, second_operand

@@ -23,9 +23,9 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
             return "Error: Numbers must only contain digits."
 
         if operator == "+":
-            evaluation = first_number + second_number
+            result = first_number + second_number
         elif operator == "-":
-            evaluation = first_number - second_number
+            result = first_number - second_number
         else:
             return "Error: Operator must be '+' or '-'."
 
@@ -36,21 +36,21 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
             second_line += "{}".format(operator) + " " * (len(first_operand) - len(second_operand) + 1) + "{}".format(
                 second_operand) + four_spaces
             third_line += "-" * (len(first_operand) + 2) + "    "
-            if len(first_operand) >= len(str(evaluation)):
-                fourth_line += " " * (2 + len(first_operand) - len(str(evaluation))) + "{}".format(
-                    evaluation) + four_spaces
+            if len(first_operand) >= len(str(result)):
+                fourth_line += " " * (2 + len(first_operand) - len(str(result))) + "{}".format(
+                    result) + four_spaces
             else:
-                fourth_line += " {}".format(evaluation) + four_spaces
+                fourth_line += " {}".format(result) + four_spaces
         else:
             first_line += " " * (len(second_operand) - len(first_operand) + 2) + "{}".format(
                 first_operand) + four_spaces
             second_line += "{} {}".format(operator, second_operand) + four_spaces
             third_line += "-" * (len(second_operand) + 2) + four_spaces
-            if len(second_operand) >= len(str(evaluation)):
-                fourth_line += " " * (2 + len(second_operand) - len(str(evaluation))) + "{}".format(
-                    evaluation) + four_spaces
+            if len(second_operand) >= len(str(result)):
+                fourth_line += " " * (2 + len(second_operand) - len(str(result))) + "{}".format(
+                    result) + four_spaces
             else:
-                fourth_line += " {}".format(evaluation) + four_spaces
+                fourth_line += " {}".format(result) + four_spaces
         # Strip the four spaces from the last problem and add new lines
         if problem == problems[len(problems) - 1]:
             first_line = first_line.rstrip() + "\n"

@@ -22,9 +22,6 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
         except ValueError:
             return "Error: Numbers must only contain digits."
 
-        if len(first_operand) > 4 or len(second_operand) > 4:
-            return "Error: Numbers cannot be more than four digits."
-
         if operator == "+":
             evaluation = first_number + second_number
         elif operator == "-":

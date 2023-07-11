@@ -19,7 +19,7 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
         try:
             first_number = int(first_operand)
             second_number = int(second_operand)
-        except:
+        except ValueError:
             return "Error: Numbers must only contain digits."
 
         if len(first_operand) > 4 or len(second_operand) > 4:

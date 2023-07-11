@@ -1,13 +1,7 @@
-""" If the longer operand comes first: first line: leave 2 spaces at the beginning, one for the operator position in the next line and one space for after the operator
-second line: subtract the length of the first operand from the one for the second operand, add 1 to the result and leave it as the number of spaces to be put before the second operand
-third line: length of the longer operand + 2 is the number of dashes to be inserted, the 2 dashes added to account for the operator and the space
-fourth line:
-"""
-""" If the longer operand comes second, we insert subtraction of lengths result + 2 spaces in the first line then the operand, 
-we then leave a space between the operator and the operand in the second line  """
-
-
 def arithmetic_arranger(problems, evaluate=False):
+    if not (type(problems) == list or type(problems) == tuple):
+        raise TypeError("Expected list or tuple")
+
     if len(problems) > 5:
         return "Error: Too many problems."
 

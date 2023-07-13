@@ -11,7 +11,7 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
     fourth_line = ""
 
     for problem in problems:
-        first_operand, operator, second_operand = parse_problem(problem)
+        first_operand, operator, second_operand = _parse_problem(problem)
 
         if len(first_operand) > 4 or len(second_operand) > 4:
             return "Error: Operands cannot be more than four digits."
@@ -69,7 +69,7 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
     return arranged_problems
 
 
-def parse_problem(problem):
+def _parse_problem(problem):
     if type(problem) != str:
         raise TypeError("Expected string")
 

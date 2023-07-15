@@ -1,5 +1,5 @@
-from src.components.format import format_problem, format_last, join
-from src.components.parse import parse_problem
+from src.components.formatter import format_problem, format_last, join
+from src.components.parser import parse_problem
 
 
 def arithmetic_arranger(problems, evaluate=False) -> str:

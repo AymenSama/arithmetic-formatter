@@ -37,12 +37,8 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
                                                                           fourth_line)
         # Strip the four spaces from the last problem and add new lines
         if problem == problems[len(problems) - 1]:
-            first_line = first_line.rstrip() + "\n"
-            second_line = second_line.rstrip() + "\n"
-            third_line = third_line.rstrip()
-            if evaluate:
-                third_line += "\n"
-            fourth_line = fourth_line.rstrip()
+            first_line, fourth_line, second_line, third_line = _handle_last(evaluate, first_line, second_line,
+                                                                            third_line, fourth_line)
 
     # Handle the optional argument, it defaults to False if not precised
     if evaluate:
@@ -51,3 +47,13 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
         arranged_problems = first_line + second_line + third_line
 
     return arranged_problems
+
+
+def _handle_last(evaluate, first_line, second_line, third_line, fourth_line):
+    first_line = first_line.rstrip() + "\n"
+    second_line = second_line.rstrip() + "\n"
+    third_line = third_line.rstrip()
+    if evaluate:
+        third_line += "\n"
+    fourth_line = fourth_line.rstrip()
+    return first_line, fourth_line, second_line, third_line

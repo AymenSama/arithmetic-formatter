@@ -30,12 +30,11 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
         else:
             return "Error: Operator must be '+' or '-'."
 
-        # Adjust the spacing based on which operand is longer
         first_line, fourth_line, second_line, third_line = format_problem(first_operand, second_operand, operator,
                                                                           result,
                                                                           first_line, second_line, third_line,
                                                                           fourth_line)
-        # Strip the four spaces from the last problem and add new lines
+
         if problem == problems[len(problems) - 1]:
             first_line, fourth_line, second_line, third_line = _handle_last(evaluate, first_line, second_line,
                                                                             third_line, fourth_line)

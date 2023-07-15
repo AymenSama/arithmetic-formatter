@@ -1,4 +1,4 @@
-from src.components.format import format_problem
+from src.components.format import format_problem, format_last, join
 from src.components.parse import parse_problem
 
 
@@ -9,7 +9,7 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
     if len(problems) > 5:
         return "Error: Too many problems."
 
-    first_line, second_line, third_line, fourth_line = "", "", "", ""
+    lines = ["", "", "", ""]
 
     for problem in problems:
         try:
@@ -30,29 +30,11 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
         else:
             return "Error: Operator must be '+' or '-'."
 
-        first_line, fourth_line, second_line, third_line = format_problem(first_operand, second_operand, operator,
-                                                                          result,
-                                                                          first_line, second_line, third_line,
-                                                                          fourth_line)
+        format_problem(lines, first_operand, second_operand, operator, result)
 
-        if problem == problems[len(problems) - 1]:
-            first_line, fourth_line, second_line, third_line = _handle_last(evaluate, first_line, second_line,
-                                                                            third_line, fourth_line)
+        if problem == problems[-1]:
+            format_last(lines)
 
-    # Handle the optional argument, it defaults to False if not precised
-    if evaluate:
-        arranged_problems = first_line + second_line + third_line + fourth_line
-    else:
-        arranged_problems = first_line + second_line + third_line
+    arranged_problems = join(lines, evaluate)
 
     return arranged_problems
-
-
-def _handle_last(evaluate, first_line, second_line, third_line, fourth_line):
-    first_line = first_line.rstrip() + "\n"
-    second_line = second_line.rstrip() + "\n"
-    third_line = third_line.rstrip()
-    if evaluate:
-        third_line += "\n"
-    fourth_line = fourth_line.rstrip()
-    return first_line, fourth_line, second_line, third_line

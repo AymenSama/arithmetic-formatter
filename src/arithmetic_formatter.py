@@ -1,3 +1,6 @@
+from src.components.parse import parse_problem
+
+
 def arithmetic_arranger(problems, evaluate=False) -> str:
     if not (type(problems) == list or type(problems) == tuple):
         raise TypeError("Expected list or tuple")
@@ -11,10 +14,10 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
     fourth_line = ""
 
     for problem in problems:
-        first_operand, operator, second_operand = _parse_problem(problem)
-
-        if len(first_operand) > 4 or len(second_operand) > 4:
-            return "Error: Operands cannot be more than four digits."
+        try:
+            first_operand, operator, second_operand = parse_problem(problem)
+        except RuntimeError:
+            return "Error: Operands cannot be longer than four digits."
 
         try:
             first_number = int(first_operand)
@@ -64,16 +67,3 @@ def arithmetic_arranger(problems, evaluate=False) -> str:
 
     return arranged_problems
 
-
-def _parse_problem(problem):
-    if type(problem) != str:
-        raise TypeError("Expected string")
-
-    elements = problem.split()
-    if len(elements) != 3:
-        raise ValueError("Expected two operands and one operator")
-
-    first_operand = elements[0]
-    operator = elements[1]
-    second_operand = elements[2]
-    return first_operand, operator, second_operand

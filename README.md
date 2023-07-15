@@ -1,0 +1,2 @@
+# arithmetic-formatter
+My solution to the [Arithmetic Formatter](https://www.freecodecamp.org/learn/scientific-computing-with-python/scientific-computing-with-python-projects/arithmetic-formatter) project, part of the [FCC Scientific Computing with Python certification](https://www.freecodecamp.org/certification/fcc64668135-c8c4-4de7-aaff-86e0e19461ac/scientific-computing-with-python-v7). I heavily refactored my original code, and wrote unit tests in the process. 
